@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVI</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      }
+
+      h1 {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: none;
+        color: white;
+        background-color: #2196f3;
+        cursor: pointer;
+        margin: 1rem;
+      }
+
+      button:hover {
+        background-color: #0b7dda;
+      }
+
+      #result-container {
+        margin-top: 2rem;
+        background-color: #eee;
+        border-radius: 4px;
+        padding: 1rem;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #result {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <br>
+    <br>
+    <h1 style="margin-top: 300px;">ViVi</h1>
+    <h3>Choose what you want to do!</h3>
+
+    <button onclick="window.location.href='/att/'">Upload an Audio File</button>
+    <button onclick="window.location.href='/stt/'">Speak into the Mic</button>
+
+  </body>
+</html>

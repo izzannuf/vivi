@@ -12,14 +12,6 @@ if (! "webkitSpeechRecognition" in window) {
   recognition.interimResults = true;
   recognition.lang = 'id-ID';
   
-  // recognition.onstart = () => {
-  //     console.log('Start...')
-  // };
-  
-  // recognition.onend = () => {
-  //     console.log('End...')
-  // };
-  
   recognition.onError = () => {
     console.log('Error...')
   };
