@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 
 # Create your views here.
 def index(request):
