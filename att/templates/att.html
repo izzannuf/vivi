@@ -54,6 +54,11 @@
         font-weight: bold;
         display: none;
       }
+
+      #summarize-button {
+        display: none;
+      }
+
     </style>
   </head>
 
@@ -71,6 +76,7 @@
 		<p id="transcribing">Transcribing...</p>
 		<p id="result-text">The transcription will be displayed here.</p>
 	</div>
+  <button id="summarize-button">Summarize</button>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -91,6 +97,7 @@
 						$('#result-text').text(data.text);
 						$('#transcribing').hide();
 						$('#submit-button').show();
+            $('#summarize-button').show();
 					},
 					error: function(xhr, status, error) {
 						console.log(xhr);
@@ -103,6 +110,34 @@
 			});
 		});
 	</script>
+
+  <script>
+    $(document).ready(function() {
+      $('#summarize-button').click(function(event) {
+        event.preventDefault(); // prevent default form submission
+        $(this).text('Loading...'); // change the button text to "Loading..."
+        $(this).prop('disabled', true); // disable the button
+        var text = $('#result-text').text();
+        $.ajax({
+          url: '/summarize/',
+          type: 'POST',
+          data: {
+            'text': text,
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+          },
+          success: function(response) {
+            // render the response HTML in the current page
+            $('body').html(response);
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+          }
+        });
+      });
+    });
+  </script>
 
   </body>
 </html>
