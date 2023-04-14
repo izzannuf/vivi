@@ -59,6 +59,10 @@
         display: none;
       }
 
+      #download-button {
+        display: none;
+      }
+
     </style>
   </head>
 
@@ -73,10 +77,12 @@
 		<button id="submit-button" type="submit">Submit</button>
 	</form>
 	<div id="result-container">
-		<p id="transcribing">Transcribing...</p>
-		<p id="result-text">The transcription will be displayed here.</p>
+		<p id="transcribing">Transcribing the file, this may take a while...</p>
+		<p id="result-text" style="text-align: justify;"></p>
 	</div>
   <button id="summarize-button">Summarize</button>
+  <button id="download-button" onclick="downloadText()">Download</button>
+
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
@@ -98,6 +104,8 @@
 						$('#transcribing').hide();
 						$('#submit-button').show();
             $('#summarize-button').show();
+            $('#download-button').show();
+
 					},
 					error: function(xhr, status, error) {
 						console.log(xhr);
@@ -137,6 +145,38 @@
         });
       });
     });
+  </script>
+
+  <script>
+    function downloadText() {
+      // Get the text from the <p> element
+      const text = document.getElementById("result-text").innerText;
+      
+      // Create a new blob with the text and set the MIME type to "text/plain"
+      const blob = new Blob([text], {type: "text/plain"});
+      
+      // Create a new URL for the blob object
+      const url = URL.createObjectURL(blob);
+      
+      // Create a new anchor element with the URL as its href attribute
+      const a = document.createElement("a");
+      a.href = url;
+      
+      // Set the anchor element's download attribute to the desired file name
+      a.download = "text.txt";
+      
+      // Append the anchor element to the document body
+      document.body.appendChild(a);
+      
+      // Click the anchor element to trigger the download
+      a.click();
+      
+      // Remove the anchor element from the document body
+      document.body.removeChild(a);
+      
+      // Release the URL object
+      URL.revokeObjectURL(url);
+    }
   </script>
 
   </body>
